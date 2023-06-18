@@ -10,7 +10,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AgencyController extends AbstractController
 {
-    // #[Route('/agence', name: 'app_agence')]
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    #[Route('/', name: 'app_agency')]
+    public function agency(): Response
+    {
+        $agency = $this->entityManager
+            ->getRepository(Agency::class)
+            ->findAll();
+
+        return $this->render('home/index.html.twig', [
+            'agency' => $agency,
+        ]);
+    }
+
+    // #[Route('/agence', name: 'app_agency')]
     // public function index(EntityManagerInterface $entityManager): Response
     // {
     //     //find the image
@@ -26,6 +43,8 @@ class AgencyController extends AbstractController
 
     //     $entityManager->persist($agency);
     //     $entityManager->flush();
-    //     return $this->render('agency/index.html.twig', []);
+    //     return $this->render('home/index.html.twig', [    
+    //     'controller_name' => 'AgencyController',
+    //     ]);
     // }
 }
