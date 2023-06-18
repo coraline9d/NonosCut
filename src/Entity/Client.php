@@ -38,8 +38,8 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 60)]
     private ?string $lastname = null;
 
-    #[ORM\Column]
-    private ?int $mobile = null;
+    #[ORM\Column(length: 60)]
+    private ?string $mobile = null;
 
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
@@ -151,12 +151,12 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getMobile(): ?int
+    public function getMobile(): ?string
     {
         return $this->mobile;
     }
 
-    public function setMobile(int $mobile): static
+    public function setMobile(string $mobile): static
     {
         $this->mobile = $mobile;
 
