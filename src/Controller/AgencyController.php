@@ -24,6 +24,7 @@ class AgencyController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'agency' => $agency,
+            'controller_name' => 'AgencyController'
         ]);
     }
 
