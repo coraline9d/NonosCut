@@ -40,6 +40,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('mobile', null, [
                 'label' => 'Numéro de Téléphone *',
+                'attr' => [
+                    'placeholder' => '+33625122512',
+                ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^\+33[67]\d{8}$/',

@@ -12,6 +12,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass: DogRepository::class)]
 class Dog
 {
+    public function __toString()
+    {
+        return $this->id;
+        return $this->nickname;
+        return $this->breed;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -28,12 +35,6 @@ class Dog
     private ?string $breed = null;
 
     #[ORM\Column]
-    private array $sexe = [];
-
-    #[ORM\Column]
-    private ?float $weight = null;
-
-    #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $created_at = null;
 
@@ -42,11 +43,14 @@ class Dog
     private ?\DateTimeInterface $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Client $client = null;
 
     #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Appointment::class, orphanRemoval: true)]
     private Collection $appointments;
+
+    #[ORM\Column(length: 255)]
+    private ?string $sexe = null;
 
     public function __construct()
     {
@@ -90,30 +94,6 @@ class Dog
     public function setBreed(?string $breed): static
     {
         $this->breed = $breed;
-
-        return $this;
-    }
-
-    public function getSexe(): array
-    {
-        return $this->sexe;
-    }
-
-    public function setSexe(array $sexe): static
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    public function getWeight(): ?float
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(float $weight): static
-    {
-        $this->weight = $weight;
 
         return $this;
     }
@@ -166,6 +146,18 @@ class Dog
                 $appointment->setDog(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): static
+    {
+        $this->sexe = $sexe;
 
         return $this;
     }

@@ -16,6 +16,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Client implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    public function __toString()
+    {
+        return $this->id;
+        return $this->nickname;
+        return $this->lastname;
+        return $this->email;
+        return $this->password;
+        return $this->mobile;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]
