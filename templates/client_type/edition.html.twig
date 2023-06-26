@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nonos Cut - Modification de l'utilisateur
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="title">MODIFICATION DU PROFIL</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4 flash">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{% for message in app.flashes('error') %}
+			<div class="alert alert-danger flash">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<div class="form">
+			{{ form_start(form) }}
+			{{ form_row(form.email) }}
+			{{ form_row(form.nickname) }}
+			{{ form_row(form.lastname) }}
+			{{ form_row(form.mobile) }}
+			<button type="submit">
+				MODIFIER MON PROFIL
+			</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

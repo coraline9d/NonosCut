@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/book')]
@@ -22,13 +23,16 @@ class BookController extends AbstractController
         $this->security = $security;
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_book_index', methods: ['GET'])]
     public function index(AppointmentRepository $appointmentRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('book/index.html.twig', [
-            'appointments' => $appointmentRepository->findAll(),
+            'appointments' => $appointmentRepository->findBy(['client' => $user]),
         ]);
     }
+
 
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response

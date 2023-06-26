@@ -80,10 +80,21 @@ class DateSubscriber implements EventSubscriberInterface
 
         // Si les horaires pour le jour sélectionné sont trouvés, mettre à jour les heures d'ouverture, de fermeture et de pause déjeuner
         if ($daySchedule) {
-            $openingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getOpeningHour());
+            $today = new \DateTime();
+            if ($dateString === $today->format('Y-m-d')) {
+                // Modifier l'heure d'ouverture pour qu'elle soit égale à l'heure actuelle
+                $openingHour = \DateTime::createFromFormat('H:i', $today->format('H:i'));
+            } else {
+                $openingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getOpeningHour());
+            }
             $closingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getClosingHour());
             $beginningBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getBeginningBreakHour());
-            $endingBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getEndingBreakHour());
+            if ($dateString === $today->format('Y-m-d')) {
+                // Modifier l'heure d'ouverture pour qu'elle soit égale à l'heure actuelle
+                $endingBreakHour = \DateTime::createFromFormat('H:i', $today->format('H:i'));
+            } else {
+                $endingBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getEndingBreakHour());
+            }
         }
         // Si les horaires pour le jour sélectionné ne sont pas trouvés, utiliser les horaires par défaut
         else {

@@ -1,54 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointment{% endblock %}
+{% block title %}Appointment
+{% endblock %}
 
 {% block body %}
-    <h1>Appointment</h1>
+	<h1>Appointment</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ appointment.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Hour</th>
-                <td>{{ appointment.hour }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Surname</th>
-                <td>{{ appointment.surname }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ appointment.age }}</td>
-            </tr>
-            <tr>
-                <th>Breed</th>
-                <td>{{ appointment.breed }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ appointment.sexe }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ appointment.id }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Hour</th>
+				<td>{{ appointment.hour }}</td>
+			</tr>
+			<tr>
+				<th>Created_at</th>
+				<td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Updated_at</th>
+				<td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Surname</th>
+				<td>{{ appointment.surname }}</td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td>{{ appointment.age }}</td>
+			</tr>
+			<tr>
+				<th>Breed</th>
+				<td>{{ appointment.breed }}</td>
+			</tr>
+			<tr>
+				<th>Sexe</th>
+				<td>{{ appointment.sexe }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_book_index') }}">back to list</a>
+	<a href="{{ path('app_book_index') }}">back to list</a>
 
-    <a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
+	{% if appointment.date|date('Y-m-d') >= "now"|date('Y-m-d') %}
+		<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
+		{{ include('book/_delete_form.html.twig') }}
+	{% endif %}
 
-    {{ include('book/_delete_form.html.twig') }}
 {% endblock %}

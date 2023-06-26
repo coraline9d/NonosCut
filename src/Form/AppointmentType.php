@@ -15,6 +15,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class AppointmentType extends AbstractType
@@ -38,7 +41,7 @@ class AppointmentType extends AbstractType
                 'attr' => ['min' => date('d-m-Y')],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez renseigner une date pour votre repas s\'il vous plait'
+                        'message' => 'Veuillez renseigner une date pour votre rendez-vous s\'il vous plait'
                     ]),
                     new GreaterThanOrEqual([
                         'value' => 'today',
@@ -47,10 +50,45 @@ class AppointmentType extends AbstractType
                 ]
             ])
             // ->add('hour')
-            ->add('surname')
-            ->add('age')
-            ->add('breed')
-            ->add('sexe')
+            ->add('surname', TextType::class, [
+                'label' => 'Prénom du Toutou :',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le prénom de votre chien s\'il vous plait'
+                    ]),
+                ]
+            ])
+            ->add('age', NumberType::class, [
+                'label' => 'Âge :',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner l\'âge de votre chien s\'il vous plait'
+                    ]),
+                ]
+            ])
+            ->add('breed', TextType::class, [
+                'label' => 'Râce :',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner une date pour votre rendez-vous s\'il vous plait'
+                    ]),
+                ]
+            ])
+            ->add('sexe', ChoiceType::class, [
+                'label' => 'Sexe :',
+                'choices' => [
+                    'Femelle' => 'Femelle',
+                    'Mâle' => 'Mâle'
+                ],
+                'placeholder' => 'Choisir le sexe de votre chien',
+                'multiple' => false,
+                'expanded' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez renseigner le sexe de votre chien'
+                    ])
+                ]
+            ])
             ->add('service', EntityType::class, [
                 'class' => Service::class,
                 'choice_label' => 'name',

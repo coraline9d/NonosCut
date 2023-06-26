@@ -1,49 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointment index{% endblock %}
+{% block title %}Appointment index
+{% endblock %}
 
 {% block body %}
-    <h1>Appointment index</h1>
+	<h1>Appointment index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Hour</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Surname</th>
-                <th>Age</th>
-                <th>Breed</th>
-                <th>Sexe</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.id }}</td>
-                <td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
-                <td>{{ appointment.hour }}</td>
-                <td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ appointment.surname }}</td>
-                <td>{{ appointment.age }}</td>
-                <td>{{ appointment.breed }}</td>
-                <td>{{ appointment.sexe }}</td>
-                <td>
-                    <a href="{{ path('app_book_show', {'id': appointment.id}) }}">show</a>
-                    <a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_book_new') }}">Create new</a>
-{% endblock %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Date</th>
+				<th>Hour</th>
+				<th>Created_at</th>
+				<th>Updated_at</th>
+				<th>Surname</th>
+				<th>Age</th>
+				<th>Breed</th>
+				<th>Sexe</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for appointment in appointments %}
+				<tr>
+					<td>{{ appointment.id }}</td>
+					<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+					<td>{{ appointment.hour }}</td>
+					<td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ appointment.surname }}</td>
+					<td>{{ appointment.age }}</td>
+					<td>{{ appointment.breed }}</td>
+					<td>{{ appointment.sexe }}</td>
+					<td>
+						{% if appointment.date|date('Y-m-d') < "now"|date('Y-m-d') %}
+							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">show</a>
+						{% else %}
+							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">show</a>
+							<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
+						{% endif %}
+					</td>
+				</tr>
+			</td>
+		</tbody>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="10">no records found</td>
+	</tr>
+{% endfor %}</tbody></table><a href="{{ path('app_book_new') }}">Create new</a>{% endblock %}
