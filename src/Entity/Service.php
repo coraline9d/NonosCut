@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -10,6 +12,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
 {
+    public function __toString()
+    {
+        return $this->id;
+        return $this->name;
+        return $this->description;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -38,10 +47,6 @@ class Service
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updated_at = null;
-
-    #[ORM\ManyToOne(inversedBy: 'services')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Agency $agency = null;
 
     public function getId(): ?string
     {
@@ -116,17 +121,5 @@ class Service
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
-    }
-
-    public function getAgency(): ?Agency
-    {
-        return $this->agency;
-    }
-
-    public function setAgency(?Agency $agency): static
-    {
-        $this->agency = $agency;
-
-        return $this;
     }
 }

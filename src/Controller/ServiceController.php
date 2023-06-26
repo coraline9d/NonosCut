@@ -45,8 +45,7 @@ class ServiceController extends AbstractController
     //         ->setDescription('Pour vos toutous de +10kg, Nonos Cut vous propose : un démellage des poils de votre chien selon sa race, avant de passer au bac à shampoing pour lui donner un petit bain, enfin un séchage en douceur lui sera donné. Et voilà, votre chien sera prêt à affronter la prochaine flaque d\'eau ;) ')
     //         ->setDuration(1)
     //         ->setPrice(40)
-    //         ->setImage($image)
-    //         ->setAgency($agency);
+    //         ->setImage($image);
 
     //     $entityManager->persist($service);
     //     $entityManager->flush();

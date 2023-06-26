@@ -61,15 +61,15 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Dog::class, orphanRemoval: true)]
-    private Collection $dogs;
-
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Appointment::class, orphanRemoval: true)]
+    private Collection $appointments;
+
     public function __construct()
     {
-        $this->dogs = new ArrayCollection();
+        $this->appointments = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -189,36 +189,6 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updated_at;
     }
 
-    /**
-     * @return Collection<int, Dog>
-     */
-    public function getDogs(): Collection
-    {
-        return $this->dogs;
-    }
-
-    public function addDog(Dog $dog): static
-    {
-        if (!$this->dogs->contains($dog)) {
-            $this->dogs->add($dog);
-            $dog->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDog(Dog $dog): static
-    {
-        if ($this->dogs->removeElement($dog)) {
-            // set the owning side to null (unless already changed)
-            if ($dog->getClient() === $this) {
-                $dog->setClient(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -227,6 +197,36 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Appointment>
+     */
+    public function getAppointments(): Collection
+    {
+        return $this->appointments;
+    }
+
+    public function addAppointment(Appointment $appointment): static
+    {
+        if (!$this->appointments->contains($appointment)) {
+            $this->appointments->add($appointment);
+            $appointment->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAppointment(Appointment $appointment): static
+    {
+        if ($this->appointments->removeElement($appointment)) {
+            // set the owning side to null (unless already changed)
+            if ($appointment->getClient() === $this) {
+                $appointment->setClient(null);
+            }
+        }
 
         return $this;
     }

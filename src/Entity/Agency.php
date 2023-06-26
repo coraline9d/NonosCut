@@ -38,18 +38,6 @@ class Agency
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'agency', targetEntity: Service::class, orphanRemoval: true)]
-    private Collection $services;
-
-    #[ORM\OneToMany(mappedBy: 'agency', targetEntity: Appointment::class, orphanRemoval: true)]
-    private Collection $appointments;
-
-    public function __construct()
-    {
-        $this->services = new ArrayCollection();
-        $this->appointments = new ArrayCollection();
-    }
-
     public function getId(): ?string
     {
         return $this->id;
@@ -111,65 +99,5 @@ class Agency
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
-    }
-
-    /**
-     * @return Collection<int, Service>
-     */
-    public function getServices(): Collection
-    {
-        return $this->services;
-    }
-
-    public function addService(Service $service): static
-    {
-        if (!$this->services->contains($service)) {
-            $this->services->add($service);
-            $service->setAgency($this);
-        }
-
-        return $this;
-    }
-
-    public function removeService(Service $service): static
-    {
-        if ($this->services->removeElement($service)) {
-            // set the owning side to null (unless already changed)
-            if ($service->getAgency() === $this) {
-                $service->setAgency(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Appointment>
-     */
-    public function getAppointments(): Collection
-    {
-        return $this->appointments;
-    }
-
-    public function addAppointment(Appointment $appointment): static
-    {
-        if (!$this->appointments->contains($appointment)) {
-            $this->appointments->add($appointment);
-            $appointment->setAgency($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAppointment(Appointment $appointment): static
-    {
-        if ($this->appointments->removeElement($appointment)) {
-            // set the owning side to null (unless already changed)
-            if ($appointment->getAgency() === $this) {
-                $appointment->setAgency(null);
-            }
-        }
-
-        return $this;
     }
 }

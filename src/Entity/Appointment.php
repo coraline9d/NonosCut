@@ -10,6 +10,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
 class Appointment
 {
+    public function __toString()
+    {
+        return $this->id;
+        return $this->hour;
+        return $this->surname;
+        return $this->breed;
+        return $this->sexe;
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue('CUSTOM')]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -19,7 +28,7 @@ class Appointment
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
     private ?string $hour = null;
 
     #[ORM\Column]
@@ -30,13 +39,25 @@ class Appointment
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\ManyToOne(inversedBy: 'appointments')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Dog $dog = null;
+    #[ORM\Column(length: 60)]
+    private ?string $surname = null;
+
+    #[ORM\Column]
+    private ?int $age = null;
+
+    #[ORM\Column(length: 60, nullable: true)]
+    private ?string $breed = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $sexe = null;
 
     #[ORM\ManyToOne(inversedBy: 'appointments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Agency $agency = null;
+    private ?Service $service = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appointments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
 
     public function getId(): ?string
     {
@@ -60,7 +81,7 @@ class Appointment
         return $this->hour;
     }
 
-    public function setHour(string $hour): static
+    public function setHour(string $hour): self
     {
         $this->hour = $hour;
 
@@ -77,26 +98,74 @@ class Appointment
         return $this->updated_at;
     }
 
-    public function getDog(): ?Dog
+    public function getSurname(): ?string
     {
-        return $this->dog;
+        return $this->surname;
     }
 
-    public function setDog(?Dog $dog): static
+    public function setSurname(string $surname): static
     {
-        $this->dog = $dog;
+        $this->surname = $surname;
 
         return $this;
     }
 
-    public function getAgency(): ?Agency
+    public function getAge(): ?int
     {
-        return $this->agency;
+        return $this->age;
     }
 
-    public function setAgency(?Agency $agency): static
+    public function setAge(int $age): static
     {
-        $this->agency = $agency;
+        $this->age = $age;
+
+        return $this;
+    }
+
+    public function getBreed(): ?string
+    {
+        return $this->breed;
+    }
+
+    public function setBreed(?string $breed): static
+    {
+        $this->breed = $breed;
+
+        return $this;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): static
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function getService(): ?Service
+    {
+        return $this->service;
+    }
+
+    public function setService(?Service $service): static
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }
