@@ -49,7 +49,21 @@ class AppointmentType extends AbstractType
                     ])
                 ]
             ])
-            // ->add('hour')
+            ->add(
+                'hour',
+                ChoiceType::class,
+                [
+                    'label' => 'Heure',
+                    'choices' => ['Les heures vous seront proposés ensuite' => 'Les heures vous seront proposés ensuite'],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez choisir une date, appuyez sur réserver et des heures vous seront proposés :)'
+                        ])
+                    ]
+                ]
+
+
+            )
             ->add('surname', TextType::class, [
                 'label' => 'Prénom du Toutou :',
                 'constraints' => [

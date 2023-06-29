@@ -56,11 +56,6 @@ class DateSubscriber implements EventSubscriberInterface
 
     public function calculateAvailableHours($dateString, $nameService)
     {
-        // Récupérer le jour de la semaine pour la date sélectionnée
-        if (is_array($dateString)) {
-            $dateString = sprintf('%04d-%02d-%02d', $dateString['year'], $dateString['month'], $dateString['day']);
-        }
-
         $date = \DateTime::createFromFormat('Y-m-d', $dateString);
         $dayOfWeek = $date->format('l');
         $daysOfWeek = [
@@ -80,21 +75,10 @@ class DateSubscriber implements EventSubscriberInterface
 
         // Si les horaires pour le jour sélectionné sont trouvés, mettre à jour les heures d'ouverture, de fermeture et de pause déjeuner
         if ($daySchedule) {
-            $today = new \DateTime();
-            if ($dateString === $today->format('Y-m-d')) {
-                // Modifier l'heure d'ouverture pour qu'elle soit égale à l'heure actuelle
-                $openingHour = \DateTime::createFromFormat('H:i', $today->format('H:i'));
-            } else {
-                $openingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getOpeningHour());
-            }
+            $openingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getOpeningHour());
             $closingHour = \DateTime::createFromFormat('H', (string)$daySchedule->getClosingHour());
             $beginningBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getBeginningBreakHour());
-            if ($dateString === $today->format('Y-m-d')) {
-                // Modifier l'heure d'ouverture pour qu'elle soit égale à l'heure actuelle
-                $endingBreakHour = \DateTime::createFromFormat('H:i', $today->format('H:i'));
-            } else {
-                $endingBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getEndingBreakHour());
-            }
+            $endingBreakHour = \DateTime::createFromFormat('H', (string)$daySchedule->getEndingBreakHour());
         }
         // Si les horaires pour le jour sélectionné ne sont pas trouvés, utiliser les horaires par défaut
         else {
@@ -107,7 +91,6 @@ class DateSubscriber implements EventSubscriberInterface
         if ($nameService) {
             $service = $this->serviceRepository->find($nameService);
             if ($service) {
-
                 $serviceDuration = (int)$service->getDuration();
             }
         }
