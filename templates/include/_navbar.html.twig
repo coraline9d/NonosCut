@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{path('app_home')}}">
+			<img src="{{ asset(agency.logo)}}" alt="Logo {{agency.name}}" title="{{agency.name}}">
+		</a>
+		<button class="navbar-toggler ml-auto custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;">
+			<span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewbox="0 0 16 16">
+					<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				</svg>
+			</span>
+		</button>
+	</div>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}" aria-current="page" href="{{path('app_home')}}">ACCUEIL</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link {{ app.request.get('_route') == 'app_service' ? 'active' : '' }}" " href=" {{path('app_service')}} " ">SERVICE</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link {{ app.request.get('_route') in ['app_reservation_new', 'app_pre_reservation'] ? 'active' : '' }}" href="{{ path('app_book_new') }}">RDV</a>
+			</li>
+			{% if app.user and app.user.roles is defined and 'ROLE_USER' in app.user.roles and 'ROLE_ADMIN' not in app.user.roles%}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle {{ app.request.get('_route') in ['app_utilisateur_profile', 'app_utilisateur_password', 'app_book_index'] ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						MON COMPTE
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item {{ app.request.get('_route') == 'app_book_index' ? 'active' : '' }}" href="{{path('app_book_index')}}">Mes Rendez-Vous</a>
+						</li>
+						<li>
+							<a class="dropdown-item {{ app.request.get('_route') == 'app_utilisateur_profile' ? 'active' : '' }}" href="{{path('app_utilisateur_profile')}}">Modifier mon profil</a>
+						</li>
+						<li>
+							<a class="dropdown-item {{ app.request.get('_route') == 'app_utilisateur_password' ? 'active' : '' }}" href="{{path('app_utilisateur_password')}}">Changer mon mot de passe</a>
+						</li>
+
+						<li><hr class="dropdown-divider"></li>
+						<li>
+							<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
+						</li>
+					</ul>
+				</li>
+				{# {% elseif app.user and app.user.roles is defined and 'ROLE_ADMIN' in app.user.roles %}
+																																																												<li class="nav-item dropdown">
+																																																													<a class="nav-link dropdown-toggle {{ app.request.get('_route') == 'app_admin' ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+																																																														ADMINISTRATION
+																																																													</a>
+																																																													<ul class="dropdown-menu">
+																																																														<li>
+																																																															<a class="dropdown-item {{ app.request.get('_route') == 'app_admin' ? 'active' : '' }}" href="{{ path('app_admin') }}">Espace Administrateur</a>
+																																																														</li>
+																																																														<li><hr class="dropdown-divider"></li>
+																																																														<li>
+																																																															<a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
+																																																														</li>
+																																																													</ul>
+																																																												</li> #}
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link {{ app.request.get('_route') == 'app_register' ? 'active' : '' }}" href="{{path('app_register')}}">INSCRIPTION</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {{ app.request.get('_route') in ['app_login', 'app_reset_password', 'app_check_email', 'app_forgot_password_request'] ? 'active' : '' }}" href="{{path('app_login')}}">CONNEXION</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</div></nav>

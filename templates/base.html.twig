@@ -15,6 +15,8 @@
 		<meta name="description" content="Bienvenue chez NoNos Cut, notre salon de toilettage de renommée situé dans le cœur du 16ème arrondissement de Paris. Découvrez nos soins créatifs et raffinés, prodigués avec amour et expertise à partir de produits de haute qualité. Offrez à votre compagnon à quatre pattes un moment d'exception dans un environnement élégant et chaleureux, où il sera choyé comme une véritable star. Réservez dès maintenant pour offrir à votre animal une expérience de toilettage inoubliable, où le bien-être et le style se rejoignent harmonieusement.">
 	</head>
 	<body>
+		{{render (controller('App\\Controller\\AgencyController::agency'))}}
 		{% block body %}{% endblock %}
+		{{render (controller('App\\Controller\\ScheduleController::schedule'))}}
 	</body>
 </html>

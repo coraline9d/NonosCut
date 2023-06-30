@@ -24,8 +24,8 @@ class Agency
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $logo = null;
+    #[ORM\Column(length: 255)]
+    private ?string $logo = null;
 
     #[ORM\Column(length: 60)]
     private ?string $mobile = null;
@@ -67,12 +67,12 @@ class Agency
         return $this;
     }
 
-    public function getLogo()
+    public function getLogo(): ?string
     {
         return $this->logo;
     }
 
-    public function setLogo($logo): static
+    public function setLogo(string $logo): static
     {
         $this->logo = $logo;
 

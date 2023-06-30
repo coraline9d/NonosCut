@@ -15,14 +15,14 @@ class AgencyController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/', name: 'app_agency')]
+    #[Route('/', name: 'app_home')]
     public function agency(): Response
     {
         $agency = $this->entityManager
             ->getRepository(Agency::class)
-            ->findAll();
+            ->findOneBy(['name' => 'Nonos Cut']);
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('include/_navbar.html.twig', [
             'agency' => $agency,
             'controller_name' => 'AgencyController'
         ]);
@@ -31,21 +31,18 @@ class AgencyController extends AbstractController
     // #[Route('/agence', name: 'app_agency')]
     // public function index(EntityManagerInterface $entityManager): Response
     // {
-    //     //find the image
-    //     $image = file_get_contents('/Users/coralineday/Desktop/logo-site.png');
-
     //     $agency = new Agency();
 
     //     $agency
     //         ->setName('Nonos Cut')
     //         ->setAddress('11 rue de l\'os')
-    //         ->setLogo($image)
+    //         ->setLogo('https://www.cjoint.com/doc/23_06/MFEoVqePzqU_logo-site.png')
     //         ->setMobile('+33123456789');
 
     //     $entityManager->persist($agency);
     //     $entityManager->flush();
-    //     return $this->render('home/index.html.twig', [    
-    //     'controller_name' => 'AgencyController',
+    //     return $this->render('home/index.html.twig', [
+    //         'controller_name' => 'AgencyController',
     //     ]);
     // }
 }

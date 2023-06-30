@@ -24,7 +24,7 @@ class BookController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/', name: 'app_book_index', methods: ['GET'])]
+    #[Route('/rendez-vous', name: 'app_book_index', methods: ['GET'])]
     public function index(AppointmentRepository $appointmentRepository): Response
     {
         $user = $this->getUser();
@@ -34,7 +34,7 @@ class BookController extends AbstractController
     }
 
 
-    #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
+    #[Route('/', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response
     {
         $appointment = new Appointment();
