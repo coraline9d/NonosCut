@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Appointment
+{% block title %}Mdofifiaction du Rendez-Vous du
+	{{ appointment.date|date('d/m/Y') }}
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Appointment</h1>
+	<h1 class="title">MODIFICATION RDV</h1>
 
 	{{ include('book/_form.html.twig') }}
 

@@ -1,20 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AgencyController!{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div
+		id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Slides -->
+		<div class="carousel-inner">
+			{% for galery in galeries %}
+				<div class="carousel-item {% if loop.first %}active{% endif %}">
+					<img src="{{ galery.image }}" alt="{{ galery.name }}">
+					<div class="cover-text">
+						<h1>SALON DE TOILETTAGE | NONOS CUT</h1>
+						<a href="#discover" class="btn btn-primary btn-lg">QUI SOMMES NOUS</a>
+						<a href="{{path('app_book_new')}}" class="btn btn-primary btn-lg">PRENDRE RDV</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<!-- Contrôles -->
+		<a class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</a>
+		<a class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</a>
+	</div>
+	<div class="container-fluid">
+		<div class="row" id="discover">
+			<div class="col-lg-12 col-md-12 col-sm-12 desc">
+				<h1>Nonos Cut</h1>
+				<h5>Notre volonté, le bien-être de vos bêtes</h5>
+				<p>
+					Depuis 2012, le salon de toilettage Nonos Cut s'est imposé comme l'un des établissements les plus réputés et appréciés pour prendre soin des chiens avec passion et dévouement. En tant que propriétaires et amoureux des animaux, nous avons toujours eu à cœur d'offrir un service de qualité exceptionnelle à tous nos clients à quatre pattes.</p>
+				<p>Notre équipe de toiletteurs professionnels est composée de passionnés qui mettent tout en œuvre pour garantir le bien-être et le confort de chaque chien qui nous rend visite. Nous comprenons que chaque animal a des besoins spécifiques, c'est pourquoi nous nous engageons à fournir des soins personnalisés et adaptés à chaque individu. Que ce soit pour une simple coupe de poils, un bain relaxant ou une séance de toilettage complet, nous veillons à ce que votre compagnon à quatre pattes reparte avec une allure soignée et une confiance accrue.</p>
+				<p>Au fil des années, nous avons constamment amélioré nos installations et nos équipements pour offrir à nos clients canins un environnement confortable et sûr. Notre salon de toilettage est équipé des dernières technologies et dispose d'espaces spécialement conçus pour répondre aux besoins individuels de chaque chien. De plus, nous accordons une grande importance à l'hygiène et à la propreté de notre établissement, en veillant à ce que chaque surface et chaque outil soient désinfectés régulièrement.</p>
+				<p>Chez Nonos Cut, nous comprenons que confier son chien à un salon de toilettage nécessite une confiance absolue. C'est pourquoi nous nous efforçons de créer une relation de confiance avec chaque client et leur compagnon à fourrure. Nous prenons le temps d'écouter vos préoccupations et vos attentes, et nous travaillons en étroite collaboration avec vous pour vous assurer que le toilettage de votre chien correspond exactement à vos souhaits.</p>
+				<p>En tant que salon de toilettage expérimenté, nous sommes également en mesure de fournir des conseils et des recommandations personnalisés pour l'entretien régulier de votre chien à la maison. Que ce soit pour le brossage, l'hygiène des oreilles, le soin des griffes ou le contrôle des parasites, notre équipe est là pour vous guider et vous soutenir dans le maintien de la santé et de la beauté de votre compagnon à quatre pattes.</p>
+				<p>Depuis plus d'une décennie, Nonos Cut a accueilli des chiens de toutes races et de toutes tailles, créant ainsi une communauté de clients fidèles qui font appel à nos services régulièrement. Nous sommes honorés d'avoir pu contribuer au bien-être et au bonheur de nombreux chiens, en leur offrant une expérience de toilettage agréable et relaxante.</p>
+				<p>Nous sommes impatients de vous accueillir, vous et votre fidèle compagnon, dans notre salon de toilettage Nonos Cut. Faites-nous confiance pour offrir à votre chien des soins de qualité supérieure, dans une atmosphère chaleureuse et accueillante.</p>
+			</div>
+		</div>
+	</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/coralineday/Desktop/nonoscut/src/Controller/AgencyController.php'|file_link(0) }}">src/Controller/AgencyController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/coralineday/Desktop/nonoscut/templates/agency/index.html.twig'|file_link(0) }}">templates/agency/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}

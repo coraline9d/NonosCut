@@ -19,8 +19,8 @@ class Galery
     #[ORM\Column(length: 60)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $image = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
@@ -47,12 +47,12 @@ class Galery
         return $this;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
 

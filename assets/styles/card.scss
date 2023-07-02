@@ -1,0 +1,63 @@
+.food-card{
+     padding: 30px; 
+}
+
+.details-card{
+    break-inside: avoid;    
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
+.info-card{
+    margin-bottom: 20px;
+}
+
+.name-price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name-card{
+    margin-bottom: 2px;
+    white-space: pre-wrap;
+}
+
+.price-card{
+    margin-bottom: 2px;
+}
+
+.name-category {
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.desc-card {
+    color:$cyan;
+    font-size: 12px;
+    max-height: 100px; /* Limit the height of the contents of the dishes */
+    overflow-y: auto; /* Add scroll if needed */
+}
+
+//for the desktop
+@media (min-width: 1025px) {
+    .food-card {
+      column-count: 3;
+    }
+  }
+  
+//for the tablet
+@media (min-width: 768px) and (max-width: 1024px) {
+  .food-card {
+    column-count: 2;
+  }
+}
+  
+//for the phone
+@media (max-width: 767px) {
+  .food-card {
+    column-count: 1;
+  }
+}

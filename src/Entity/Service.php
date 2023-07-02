@@ -16,6 +16,7 @@ class Service
     {
         return $this->id;
         return $this->name;
+        return $this->image;
         return $this->description;
     }
 
@@ -37,8 +38,8 @@ class Service
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $image = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
@@ -101,12 +102,12 @@ class Service
         return $this;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage($image): static
+    public function setImage(string $image): static
     {
         $this->image = $image;
 

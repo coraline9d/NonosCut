@@ -1,19 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointment index
+{% block title %}Mes Rendez-Vous
 {% endblock %}
 
 {% block body %}
-	<h1>Appointment index</h1>
+	<h1 class="title">VOS RENDEZ-VOUS</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Date</th>
 				<th>Hour</th>
-				<th>Created_at</th>
-				<th>Updated_at</th>
 				<th>Surname</th>
 				<th>Age</th>
 				<th>Breed</th>
@@ -24,11 +21,8 @@
 		<tbody>
 			{% for appointment in appointments %}
 				<tr>
-					<td>{{ appointment.id }}</td>
 					<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
 					<td>{{ appointment.hour }}</td>
-					<td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ appointment.surname }}</td>
 					<td>{{ appointment.age }}</td>
 					<td>{{ appointment.breed }}</td>
@@ -49,4 +43,4 @@
 	<tr>
 		<td colspan="10">no records found</td>
 	</tr>
-{% endfor %}</tbody></table><a href="{{ path('app_book_new') }}">Create new</a>{% endblock %}
+{% endfor %}</tbody></table><a href="{{ path('app_book_new') }}">NOUVEAU RENDEZ-VOUS</a>{% endblock %}

@@ -1,8 +1,9 @@
 @import'./custom.scss';
 @import './variables.scss';
-@import './home.scss';
 @import './navbar.scss';
 @import './form.scss';
+@import './home.scss';
+@import './card.scss';
 @import './footer.scss';
 
 body{
@@ -71,8 +72,14 @@ a:hover{
 //title
 .title {
     color: $cyan;
-    margin-top: 175px;
+    margin-top: 135px;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     margin-bottom: 20px;
 }
+
+@media screen and (max-width:699px) {   
+    .title{
+        margin-top: 80px;
+    }
+  }

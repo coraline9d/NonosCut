@@ -15,7 +15,6 @@ class AgencyController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/', name: 'app_home')]
     public function agency(): Response
     {
         $agency = $this->entityManager
@@ -23,8 +22,7 @@ class AgencyController extends AbstractController
             ->findOneBy(['name' => 'Nonos Cut']);
 
         return $this->render('include/_navbar.html.twig', [
-            'agency' => $agency,
-            'controller_name' => 'AgencyController'
+            'agency' => $agency
         ]);
     }
 

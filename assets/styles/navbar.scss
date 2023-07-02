@@ -7,6 +7,7 @@
     align-items: center;
     background-color: $navbar;
     z-index: 1;
+    padding: 0px;
   }
 
   .navbar.opaque {
@@ -26,6 +27,7 @@
 
   .navbar-brand {
     margin-left:  2px;
+    padding: 0px;
   }
   
   .navbar-brand img {
@@ -114,7 +116,6 @@
   .navbar{
     padding: 10px;
   }
-
 }
 
 //for the phone landscape mode
@@ -125,10 +126,6 @@
 
   .nav-link {
     font-size: 2.5vh;
-  }
-
-  .navbar{
-    padding: 10px;
   }
  }
 

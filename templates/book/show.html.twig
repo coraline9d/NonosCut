@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointment
+{% block title %}Mon Rendez-Vous du
+	{{ appointment.date|date('d/m/Y') }}
 {% endblock %}
 
 {% block body %}
-	<h1>Appointment</h1>
+	<h1 class="title">MON RDV</h1>
 
 	<table class="table">
 		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ appointment.id }}</td>
-			</tr>
 			<tr>
 				<th>Date</th>
 				<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
@@ -19,14 +16,6 @@
 			<tr>
 				<th>Hour</th>
 				<td>{{ appointment.hour }}</td>
-			</tr>
-			<tr>
-				<th>Created_at</th>
-				<td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Updated_at</th>
-				<td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 			</tr>
 			<tr>
 				<th>Surname</th>

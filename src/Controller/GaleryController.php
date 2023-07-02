@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Galery;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GaleryController extends AbstractController
@@ -14,6 +15,7 @@ class GaleryController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[Route('/', name: 'app_home')]
     public function galery(): Response
     {
         $galeries = $this->entityManager
@@ -28,14 +30,11 @@ class GaleryController extends AbstractController
     // #[Route('/galerie', name: 'app_galery')]
     // public function index(EntityManagerInterface $entityManager): Response
     // {
-    //     //find the image
-    //     $image = file_get_contents('/Users/coralineday/Desktop/coupe.jpg');
-
     //     $galery = new Galery();
 
     //     $galery
-    //         ->setName('Manucure pour Toutou')
-    //         ->setImage($image);
+    //         ->setName('Bain avant Toilettage')
+    //         ->setImage('https://www.cjoint.com/doc/23_07/MGbnOvi0uqU_douche.jpg');
 
     //     $entityManager->persist($galery);
     //     $entityManager->flush();

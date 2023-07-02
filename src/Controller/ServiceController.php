@@ -31,8 +31,6 @@ class ServiceController extends AbstractController
     // #[Route('/service', name: 'app_service')]
     // public function index(EntityManagerInterface $entityManager): Response
     // {
-    //     //find the image
-    //     $image = file_get_contents('/Users/coralineday/Desktop/retriever.jpg');
 
     //     //search agency
     //     $agencyRepository = $entityManager->getRepository(Agency::class);
@@ -41,16 +39,16 @@ class ServiceController extends AbstractController
     //     $service = new Service();
 
     //     $service
-    //         ->setName('Chien de +10kg')
-    //         ->setDescription('Pour vos toutous de +10kg, Nonos Cut vous propose : un démellage des poils de votre chien selon sa race, avant de passer au bac à shampoing pour lui donner un petit bain, enfin un séchage en douceur lui sera donné. Et voilà, votre chien sera prêt à affronter la prochaine flaque d\'eau ;) ')
-    //         ->setDuration(1)
-    //         ->setPrice(40)
-    //         ->setImage($image);
+    //         ->setName('Chien de -5kg')
+    //         ->setDescription('Pour vos toutous de -5kg, Nonos Cut vous propose : un démellage des poils de votre chien selon sa race, avant de passer au bac à shampoing pour lui donner un petit bain, enfin un séchage en douceur lui sera donné, suivi de l\'égalisation de ses poils ainsi que la coupe de ses ongles pour sublimer le tout. Et voilà, votre chien sera prêt à affronter la prochaine flaque d\'eau ;) ')
+    //         ->setDuration(3)
+    //         ->setPrice(60)
+    //         ->setImage('https://www.cjoint.com/doc/23_07/MGbnMHLmAcU_bichon.jpg');
 
     //     $entityManager->persist($service);
     //     $entityManager->flush();
     //     return $this->render('service/index.html.twig', [
-    //     'controller_name' => 'ServiceController',
+    //         'controller_name' => 'ServiceController',
     //     ]);
     // }
 }
