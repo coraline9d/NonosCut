@@ -10,15 +10,22 @@
 
 	<h1 class="title">INSCRIPTION</h1>
 
-	{{ form_errors(registrationForm) }}
-
-	{{ form_start(registrationForm, {'attr':{'novalidate':'novalidate'}}) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
-
-	<button type="submit" class="btn">Register</button>
-	{{ form_end(registrationForm) }}
+	<div class="form">
+		{{ form_start(registrationForm, {'attr':{'novalidate':'novalidate'}}) }}
+		<div class="form-bloc">
+			<div class="form-group">{{ form_row(registrationForm.nickName) }}</div>
+			<div class="form-group">{{ form_row(registrationForm.lastName) }}</div>
+		</div>
+		{{ form_row(registrationForm.email) }}
+		<div class="form-bloc">
+			<div class="form-group">{{ form_row(registrationForm.plainPassword.first) }}</div>
+			<div class="form-group">{{ form_row(registrationForm.plainPassword.second) }}</div>
+		</div>
+		{{ form_row(registrationForm.mobile) }}
+		<div class="agree">
+			{{ form_row(registrationForm.agreeTerms) }}
+		</div>
+		<button type="submit">S'INSCRIRE</button>
+		{{ form_end(registrationForm) }}
+	</div>
 {% endblock %}

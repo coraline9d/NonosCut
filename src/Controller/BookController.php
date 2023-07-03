@@ -34,6 +34,7 @@ class BookController extends AbstractController
     }
 
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response
     {

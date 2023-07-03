@@ -54,10 +54,10 @@ class AppointmentType extends AbstractType
                 ChoiceType::class,
                 [
                     'label' => 'Heure',
-                    'choices' => ['Les heures vous seront proposés ensuite' => 'Les heures vous seront proposés ensuite'],
+                    'choices' => ['Les heures vous seront proposées ensuite' => 'Les heures vous seront proposées ensuite'],
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Veuillez choisir une date, appuyez sur réserver et des heures vous seront proposés :)'
+                            'message' => 'Veuillez choisir une date, appuyez sur réserver et des heures vous seront proposées :)'
                         ])
                     ]
                 ]
@@ -81,7 +81,7 @@ class AppointmentType extends AbstractType
                 ]
             ])
             ->add('breed', TextType::class, [
-                'label' => 'Râce :',
+                'label' => 'Race :',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner une date pour votre rendez-vous s\'il vous plait'
@@ -96,7 +96,7 @@ class AppointmentType extends AbstractType
                 ],
                 'placeholder' => 'Choisir le sexe de votre chien',
                 'multiple' => false,
-                'expanded' => true,
+                // 'expanded' => false, // pas besoin de cette ligne car la valeur par défaut est false
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez renseigner le sexe de votre chien'

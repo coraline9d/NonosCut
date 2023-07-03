@@ -45,7 +45,7 @@ form input[type="email"]{
     flex: 1;
 }
 
-form input[type="password"],form input[type="text"],form input[type="number"]{
+form input[type="password"],form input[type="text"],form input[type="number"], .form-select{
     padding: 5px;
     width: 350px;
     border: 1px solid #ccc;
@@ -60,6 +60,10 @@ form input[type="date"]
     border-radius: 5px;
     height: 37px; 
     line-height: 35px; 
+}
+
+.latest{
+    padding-bottom: 30px;
 }
 
 form label:last-child{
@@ -80,7 +84,6 @@ button {
     color: $creme;
     padding: 10px 50px;
     border: 0px;
-    margin-top: 20px;
     margin-bottom: 5px;
     transition: color 0.3s ease;
 }
@@ -89,6 +92,10 @@ button:hover {
     background-color: $creme;
     color:$cyan;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mb-3{
+    padding-top: 15px;
 }
 
 //for the normal phone

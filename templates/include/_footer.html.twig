@@ -15,13 +15,13 @@
 				{% if app.user and app.user.roles is defined and 'ROLE_USER' in app.user.roles and 'ROLE_ADMIN' not in app.user.roles%}
 					<a href="{{path('app_utilisateur_profile')}}">MON COMPTE</a>
 					{# {% elseif app.user and app.user.roles is defined and 'ROLE_ADMIN' in app.user.roles %}
-																				<a href="{{path('app_admin')}}">ADMINISTRATION</a>
-																			{% else %}
-																				<div>
-																					<a href="{{path('app_register')}}">INSCRIPTION</a>
-																				</div>
-															
-																				<a href="{{path('app_login')}}">CONNEXION</a> #}
+																									<a href="{{path('app_admin')}}">ADMINISTRATION</a>
+																								{% else %}
+																									<div>
+																										<a href="{{path('app_register')}}">INSCRIPTION</a>
+																									</div>
+																				
+																									<a href="{{path('app_login')}}">CONNEXION</a> #}
 				{% endif %}
 			</div>
 
@@ -50,7 +50,7 @@
 			<div class="address">11 rue de l'os - 75016 Paris</div>
 			<div class="address">Tél : +33 (0)1 23 45 67 89</div>
 			<div class="address">
-				<a href="{{path('app_book_new')}}" class="btn btn-primary btn-lg book">Réserver</a>
+				<a href="{{path('app_book_new')}}" class="btn btn-primary btn-lg book">Prendre RDV</a>
 			</div>
 			<div class="address">Salon de Toilettage - Depuis 2012</div>
 		</div>

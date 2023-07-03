@@ -6,7 +6,26 @@
 {% block body %}
 	<h1 class="title">PRENDRE RENDEZ-VOUS</h1>
 
-	{{ include('book/_form.html.twig') }}
+	<div class="form">
+		{{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+		<div class="form-bloc">
+			<div class="form-group">{{ form_row(form.surname) }}</div>
+			<div class="form-group">{{ form_row(form.breed)}}</div>
+		</div>
+		<div class="form-bloc">
+			<div class="form-group">{{ form_row(form.age)}}</div>
+			<div class="form-group">{{ form_row(form.sexe) }}</div>
+		</div>
+		<div class="form-group">{{ form_row(form.service) }}</div>
+		<div class="form-bloc">
+			<div class="form-group latest">{{ form_row(form.date) }}</div>
+			<div class="form-group latest">{{ form_row(form.hour)}}</div>
+		</div>
+		{{ form_rest(form) }}
+		<button>{{ button_label|default('RÉSERVER CE CRÉNEAU') }}</button>
+		{{ form_end(form) }}
+	</div>
+
 
 	<a href="{{ path('app_book_index') }}">back to list</a>
 {% endblock %}

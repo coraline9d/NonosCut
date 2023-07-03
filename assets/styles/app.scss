@@ -82,4 +82,19 @@ a:hover{
     .title{
         margin-top: 80px;
     }
-  }
+}
+
+@media (min-width: 568px) and (max-width: 1024px) and (orientation: landscape) {
+    .title{
+        margin-top: 155px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) and (orientation: landscape) {
+    .title{
+        margin-top: 195px;
+    }
+}
+
+
+
