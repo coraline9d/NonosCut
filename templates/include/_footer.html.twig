@@ -14,14 +14,13 @@
 			<div>
 				{% if app.user and app.user.roles is defined and 'ROLE_USER' in app.user.roles and 'ROLE_ADMIN' not in app.user.roles%}
 					<a href="{{path('app_utilisateur_profile')}}">MON COMPTE</a>
-					{# {% elseif app.user and app.user.roles is defined and 'ROLE_ADMIN' in app.user.roles %}
-																									<a href="{{path('app_admin')}}">ADMINISTRATION</a>
-																								{% else %}
-																									<div>
-																										<a href="{{path('app_register')}}">INSCRIPTION</a>
-																									</div>
-																				
-																									<a href="{{path('app_login')}}">CONNEXION</a> #}
+				{% elseif app.user and app.user.roles is defined and 'ROLE_ADMIN' in app.user.roles %}
+					<a href="{{path('app_admin')}}">ADMINISTRATION</a>
+				{% else %}
+					<div>
+						<a href="{{path('app_register')}}">INSCRIPTION</a>
+					</div>
+					<a href="{{path('app_login')}}">CONNEXION</a>
 				{% endif %}
 			</div>
 
