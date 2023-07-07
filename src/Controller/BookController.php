@@ -59,17 +59,7 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $appointmentRepository->save($appointment, true);
 
-            // // Envoyer un e-mail à l'utilisateur avec un lien pour modifier la réservation
-            // $email = (new Email())
-            //     ->from('no-reply-confirmation@nononscut.fr')
-            //     ->to($appointment->getClient()->getEmail())
-            //     ->subject('Confirmation de votre réservation')
-            //     ->html($this->renderView('home/index.html.twig', [
-            //         'appointment' => $appointment,
-            //         'edit_url' => $this->generateUrl('app_book_edit', ['id' => $appointment->getId()])
-            //     ]));
-
-            // $mailer->send($email);
+            $this->addFlash('success', 'Votre rendez-vous a bien été enregistré, à bientôt chez Nonos Cut');
 
             return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -88,7 +78,7 @@ class BookController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_book_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edition', name: 'app_book_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Appointment $appointment, AppointmentRepository $appointmentRepository): Response
     {
         $form = $this->createForm(AppointmentType::class, $appointment);

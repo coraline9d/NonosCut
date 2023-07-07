@@ -1,9 +1,13 @@
-<h1>Hi!</h1>
+<h1 class="title">NONOS CUT - Résiliation Mot de Passe</h1>
+<div class="form">
+	<p>Pour supprimer votre ancien mot de passe, veuillez appuyer sur ce lien</p>
 
-<p>To reset your password, please visit the following link</p>
+	<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
 
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+	<p>Ce lien expira dans
+		{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
 
-<p>This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+	<p>A bientôt dans notre salon de toilettage</p>
 
-<p>Cheers!</p>
+	<p>NONOS CUT</p>
+</div>

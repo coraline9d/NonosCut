@@ -12,4 +12,5 @@ import "../styles/app.scss";
 import "bootstrap";
 
 require("./jquery.min.js");
+require("./cookie.js");
 import { Tooltip, Toast, Popover } from "bootstrap";

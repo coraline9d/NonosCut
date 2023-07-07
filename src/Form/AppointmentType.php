@@ -10,6 +10,7 @@ use App\EventSubscriber\DateSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\AppointmentRepository;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -18,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class AppointmentType extends AbstractType
@@ -106,6 +108,10 @@ class AppointmentType extends AbstractType
             ->add('service', EntityType::class, [
                 'class' => Service::class,
                 'choice_label' => 'name',
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'Inscription',
             ]);
     }
 

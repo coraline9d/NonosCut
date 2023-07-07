@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Appointment
+{% block title %}Nouveau Rendez-vous
 {% endblock %}
 
 {% block body %}
@@ -25,7 +25,4 @@
 		<button>{{ button_label|default('RÉSERVER CE CRÉNEAU') }}</button>
 		{{ form_end(form) }}
 	</div>
-
-
-	<a href="{{ path('app_book_index') }}">back to list</a>
 {% endblock %}

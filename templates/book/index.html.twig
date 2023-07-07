@@ -6,16 +6,24 @@
 {% block body %}
 	<h1 class="title">VOS RENDEZ-VOUS</h1>
 
+	<div class="flash">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+	</div>
+
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Date</th>
-				<th>Hour</th>
-				<th>Surname</th>
-				<th>Age</th>
-				<th>Breed</th>
+				<th>Heure</th>
+				<th>Surnom</th>
+				<th>Âge</th>
+				<th>Race</th>
 				<th>Sexe</th>
-				<th>actions</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,10 +37,10 @@
 					<td>{{ appointment.sexe }}</td>
 					<td>
 						{% if appointment.date|date('Y-m-d') < "now"|date('Y-m-d') %}
-							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">show</a>
+							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">voir</a>
 						{% else %}
-							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">show</a>
-							<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
+							<a href="{{ path('app_book_show', {'id': appointment.id}) }}">voir</a>
+							<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">modifier</a>
 						{% endif %}
 					</td>
 				</tr>
@@ -41,6 +49,6 @@
 	</tr>
 {% else %}
 	<tr>
-		<td colspan="10">no records found</td>
+		<td colspan="10">vous n'avez pas de rendez-vous</td>
 	</tr>
 {% endfor %}</tbody></table><a href="{{ path('app_book_new') }}">NOUVEAU RENDEZ-VOUS</a>{% endblock %}

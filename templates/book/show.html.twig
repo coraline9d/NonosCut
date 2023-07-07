@@ -14,19 +14,19 @@
 				<td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Hour</th>
+				<th>Heure</th>
 				<td>{{ appointment.hour }}</td>
 			</tr>
 			<tr>
-				<th>Surname</th>
+				<th>Surnom</th>
 				<td>{{ appointment.surname }}</td>
 			</tr>
 			<tr>
-				<th>Age</th>
+				<th>Âge</th>
 				<td>{{ appointment.age }}</td>
 			</tr>
 			<tr>
-				<th>Breed</th>
+				<th>Race</th>
 				<td>{{ appointment.breed }}</td>
 			</tr>
 			<tr>
@@ -36,10 +36,10 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_book_index') }}">back to list</a>
+	<a href="{{ path('app_book_index') }}">Retour à la liste</a>
 
 	{% if appointment.date|date('Y-m-d') >= "now"|date('Y-m-d') %}
-		<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">edit</a>
+		<a href="{{ path('app_book_edit', {'id': appointment.id}) }}">modifier</a>
 		{{ include('book/_delete_form.html.twig') }}
 	{% endif %}
 
