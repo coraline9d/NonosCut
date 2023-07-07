@@ -9,7 +9,7 @@
 				<a href="{{path('app_service')}}">SERVICE</a>
 			</div>
 			<div>
-				<a href="{{path('app_book_new')}}">RÉSERVATION</a>
+				<a href="{{path('app_book_new')}}">PRENDRE RDV</a>
 			</div>
 			<div>
 				{% if app.user and app.user.roles is defined and 'ROLE_USER' in app.user.roles and 'ROLE_ADMIN' not in app.user.roles%}
@@ -23,7 +23,12 @@
 					<a href="{{path('app_login')}}">CONNEXION</a>
 				{% endif %}
 			</div>
-
+			<div>
+				<a href="{{path('app_rgpd')}}">POLITIQUE DE CONFIDENTIALITÉ</a>
+			</div>
+			<div>
+				<a href="{{path('app_cgu')}}">CONDTIONS GÉNÉRALES D'UTILISATIONS</a>
+			</div>
 		</div>
 		<div class="column">
 			<h3>Horaires d'ouverture</h3>
