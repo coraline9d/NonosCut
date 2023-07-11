@@ -5,6 +5,13 @@
 
 {% block body %}
 	<h1 class="title">SERVICE</h1>
+	<div class="flash">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+	</div>
 	<div class="card-container ">
 		<div class="row" id="discover">
 			{% for service in services %}

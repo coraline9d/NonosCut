@@ -4,12 +4,10 @@
 {% endblock %}
 
 {% block body %}
+	<h1 class="title">INSCRIPTION</h1>
 	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
-
-	<h1 class="title">INSCRIPTION</h1>
-
 	<div class="form">
 		{{ form_start(registrationForm, {'attr':{'novalidate':'novalidate'}}) }}
 		<div class="form-bloc">
