@@ -19,4 +19,10 @@ class RGPDController extends AbstractController
     {
         return $this->render('RGPD/CGU.html.twig', []);
     }
+
+    #[Route('/mentions-légales', name: 'app_mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('RGPD/mentions.html.twig', []);
+    }
 }
